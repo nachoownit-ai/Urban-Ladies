@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "coolwell",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["http-server", "C:\\Users\\nacho\\Desktop", "-p", "8080"],
+      "port": 8080
+    }
+  ]
+}

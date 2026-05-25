@@ -1,0 +1,7 @@
+
+> urban-ladies-pro-backend@1.0.0 start
+> node dist/index.js
+
+✓ Database initialized successfully at C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\backend\urban_ladies.db
+✓ Server running on http://localhost:3001
+✓ Environment: development

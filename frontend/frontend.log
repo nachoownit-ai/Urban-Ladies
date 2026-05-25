@@ -1,0 +1,393 @@
+
+> urban-ladies-pro-frontend@1.0.0 dev
+> vite
+
+
+  [32m[1mVITE[22m v4.5.14[39m  [2mready in [0m[1m911[22m[2m[0m ms[22m
+
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m5173[22m/[39m
+[2m  [32m➜[39m  [1mNetwork[22m[2m: use [22m[1m--host[22m[2m to expose[22m
+[2m15:50:45[22m [31m[1m[vite][22m[39m [31mInternal server error: C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\src\components\Services\SalesHistory.tsx: Unexpected token (32:42)
+
+[0m [90m 30 |[31m   [36mconst[31m [periodFilter[33m,[31m setPeriodFilter] [33m=[31m useState[33m<[31m[33mPeriodFilter[31m[33m>[31m([32m'month'[31m)[33m;[31m
+ [90m 31 |[31m   [36mconst[31m [showForm[33m,[31m setShowForm] [33m=[31m useState([36mfalse[31m)[33m;[31m
+[31m[1m>[22m[31m[90m 32 |[31m   [36mconst[31m [sales[33m,[31m setSales] [33m=[31m useState[33m<[31m[33mSale[31m[][33m>[31m([
+ [90m    |[31m                                           [31m[1m^[22m[31m
+ [90m 33 |[31m     [90m// Week (last 7 days)[31m
+ [90m 34 |[31m     { id[33m:[31m [32m'1'[31m[33m,[31m serviceName[33m:[31m [32m'Corte de Cabello'[31m[33m,[31m clientName[33m:[31m [32m'Isabel Michoa'[31m[33m,[31m date[33m:[31m [32m'2026-05-23'[31m[33m,[31m price[33m:[31m [35m25[31m[33m,[31m employee[33m:[31m [32m'Rubi'[31m }[33m,[31m
+ [90m 35 |[31m     { id[33m:[31m [32m'2'[31m[33m,[31m serviceName[33m:[31m [32m'Manicura'[31m[33m,[31m clientName[33m:[31m [32m'Pepa Mesa'[31m[33m,[31m date[33m:[31m [32m'2026-05-23'[31m[33m,[31m price[33m:[31m [35m20[31m[33m,[31m employee[33m:[31m [32m'Ángela'[31m }[33m,[31m[0m[39m
+  Plugin: [35mvite:react-babel[39m
+  File: [36mC:/Users/nacho/OneDrive/Documentos/Claude/Projects/Peluquería Urban Ladies/frontend/src/components/Services/SalesHistory.tsx[39m:32:42
+[33m  30 |    const [periodFilter, setPeriodFilter] = useState<PeriodFilter>('month');
+  31 |    const [showForm, setShowForm] = useState(false);
+  32 |    const [sales, setSales] = useState<Sale[]>([
+     |                                            ^
+  33 |      // Week (last 7 days)
+  34 |      { id: '1', serviceName: 'Corte de Cabello', clientName: 'Isabel Michoa', date: '2026-05-23', price: 25, employee: 'Rubi' },[39m
+      at constructor (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:365:19)
+      at TypeScriptParserMixin.raise (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:6616:19)
+      at TypeScriptParserMixin.unexpected (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:6636:16)
+      at TypeScriptParserMixin.parseExprAtom (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11459:22)
+      at TypeScriptParserMixin.parseExprAtom (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:4776:20)
+      at TypeScriptParserMixin.parseExprSubscripts (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11098:23)
+      at TypeScriptParserMixin.parseUpdate (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11083:21)
+      at TypeScriptParserMixin.parseMaybeUnary (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11063:23)
+      at TypeScriptParserMixin.parseMaybeUnary (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:9854:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10916:61)
+      at TypeScriptParserMixin.parseExprOps (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10921:23)
+      at TypeScriptParserMixin.parseMaybeConditional (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10898:23)
+      at TypeScriptParserMixin.parseMaybeAssign (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10848:21)
+      at TypeScriptParserMixin.parseMaybeAssign (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:9803:20)
+      at TypeScriptParserMixin.parseExpressionBase (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10801:23)
+      at C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10797:39
+      at TypeScriptParserMixin.allowInAnd (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:12443:12)
+      at TypeScriptParserMixin.parseExpression (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10797:17)
+      at TypeScriptParserMixin.parseMember (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11156:28)
+      at TypeScriptParserMixin.parseSubscript (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11141:21)
+      at TypeScriptParserMixin.parseSubscript (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:9289:18)
+      at TypeScriptParserMixin.parseSubscripts (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11111:19)
+      at TypeScriptParserMixin.parseExprSubscripts (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11102:17)
+      at TypeScriptParserMixin.parseUpdate (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11083:21)
+      at TypeScriptParserMixin.parseMaybeUnary (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11063:23)
+      at TypeScriptParserMixin.parseMaybeUnary (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:9854:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10916:61)
+      at TypeScriptParserMixin.parseExprOpBaseRightExpr (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11003:34)
+      at TypeScriptParserMixin.parseExprOpRightExpr (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10998:21)
+      at TypeScriptParserMixin.parseExprOp (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10964:27)
+      at TypeScriptParserMixin.parseExprOp (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:9323:18)
+      at TypeScriptParserMixin.parseExprOps (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10925:17)
+      at TypeScriptParserMixin.parseMaybeConditional (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10898:23)
+      at TypeScriptParserMixin.parseMaybeAssign (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10848:21)
+      at TypeScriptParserMixin.parseMaybeAssign (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:9803:20)
+      at C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10817:39
+      at TypeScriptParserMixin.allowInAnd (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:12438:16)
+      at TypeScriptParserMixin.parseMaybeAssignAllowIn (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10817:17)
+      at TypeScriptParserMixin.parseVar (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:13401:91)
+      at TypeScriptParserMixin.parseVarStatement (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:13247:10)
+      at TypeScriptParserMixin.parseVarStatement (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:9425:31)
+      at TypeScriptParserMixin.parseStatementContent (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:12868:23)
+      at TypeScriptParserMixin.parseStatementContent (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:9525:18)
+      at TypeScriptParserMixin.parseStatementLike (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:12784:17)
+      at TypeScriptParserMixin.parseStatementListItem (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:12764:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:13333:61)
+      at TypeScriptParserMixin.parseBlockBody (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:13326:10)
+      at TypeScriptParserMixin.parseBlock (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:13314:10)
+      at TypeScriptParserMixin.parseFunctionBody (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:12117:24)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:12103:10)
+C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\src\components\Services\SalesHistory.tsx: Unexpected token (32:42)
+
+[0m [90m 30 |[39m   [36mconst[39m [periodFilter[33m,[39m setPeriodFilter] [33m=[39m useState[33m<[39m[33mPeriodFilter[39m[33m>[39m([32m'month'[39m)[33m;[39m
+ [90m 31 |[39m   [36mconst[39m [showForm[33m,[39m setShowForm] [33m=[39m useState([36mfalse[39m)[33m;[39m
+[31m[1m>[22m[39m[90m 32 |[39m   [36mconst[39m [sales[33m,[39m setSales] [33m=[39m useState[33m<[39m[33mSale[39m[][33m>[39m([
+ [90m    |[39m                                           [31m[1m^[22m[39m
+ [90m 33 |[39m     [90m// Week (last 7 days)[39m
+ [90m 34 |[39m     { id[33m:[39m [32m'1'[39m[33m,[39m serviceName[33m:[39m [32m'Corte de Cabello'[39m[33m,[39m clientName[33m:[39m [32m'Isabel Michoa'[39m[33m,[39m date[33m:[39m [32m'2026-05-23'[39m[33m,[39m price[33m:[39m [35m25[39m[33m,[39m employee[33m:[39m [32m'Rubi'[39m }[33m,[39m
+ [90m 35 |[39m     { id[33m:[39m [32m'2'[39m[33m,[39m serviceName[33m:[39m [32m'Manicura'[39m[33m,[39m clientName[33m:[39m [32m'Pepa Mesa'[39m[33m,[39m date[33m:[39m [32m'2026-05-23'[39m[33m,[39m price[33m:[39m [35m20[39m[33m,[39m employee[33m:[39m [32m'Ángela'[39m }[33m,[39m[0m
+[2m15:56:27[22m [31m[1m[vite][22m[39m [31mInternal server error: C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\src\components\Services\SalesHistory.tsx: Unexpected token (32:42)
+
+[0m [90m 30 |[31m   [36mconst[31m [periodFilter[33m,[31m setPeriodFilter] [33m=[31m useState[33m<[31m[33mPeriodFilter[31m[33m>[31m([32m'month'[31m)[33m;[31m
+ [90m 31 |[31m   [36mconst[31m [showForm[33m,[31m setShowForm] [33m=[31m useState([36mfalse[31m)[33m;[31m
+[31m[1m>[22m[31m[90m 32 |[31m   [36mconst[31m [sales[33m,[31m setSales] [33m=[31m useState[33m<[31m[33mSale[31m[][33m>[31m([
+ [90m    |[31m                                           [31m[1m^[22m[31m
+ [90m 33 |[31m     [90m// Week (last 7 days)[31m
+ [90m 34 |[31m     { id[33m:[31m [32m'1'[31m[33m,[31m serviceName[33m:[31m [32m'Corte de Cabello'[31m[33m,[31m clientName[33m:[31m [32m'Isabel Michoa'[31m[33m,[31m date[33m:[31m [32m'2026-05-23'[31m[33m,[31m price[33m:[31m [35m25[31m[33m,[31m employee[33m:[31m [32m'Rubi'[31m }[33m,[31m
+ [90m 35 |[31m     { id[33m:[31m [32m'2'[31m[33m,[31m serviceName[33m:[31m [32m'Manicura'[31m[33m,[31m clientName[33m:[31m [32m'Pepa Mesa'[31m[33m,[31m date[33m:[31m [32m'2026-05-23'[31m[33m,[31m price[33m:[31m [35m20[31m[33m,[31m employee[33m:[31m [32m'Ángela'[31m }[33m,[31m[0m[39m
+  Plugin: [35mvite:react-babel[39m
+  File: [36mC:/Users/nacho/OneDrive/Documentos/Claude/Projects/Peluquería Urban Ladies/frontend/src/components/Services/SalesHistory.tsx[39m:32:42
+[33m  30 |    const [periodFilter, setPeriodFilter] = useState<PeriodFilter>('month');
+  31 |    const [showForm, setShowForm] = useState(false);
+  32 |    const [sales, setSales] = useState<Sale[]>([
+     |                                            ^
+  33 |      // Week (last 7 days)
+  34 |      { id: '1', serviceName: 'Corte de Cabello', clientName: 'Isabel Michoa', date: '2026-05-23', price: 25, employee: 'Rubi' },[39m
+      at constructor (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:365:19)
+      at TypeScriptParserMixin.raise (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:6616:19)
+      at TypeScriptParserMixin.unexpected (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:6636:16)
+      at TypeScriptParserMixin.parseExprAtom (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11459:22)
+      at TypeScriptParserMixin.parseExprAtom (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:4776:20)
+      at TypeScriptParserMixin.parseExprSubscripts (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11098:23)
+      at TypeScriptParserMixin.parseUpdate (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11083:21)
+      at TypeScriptParserMixin.parseMaybeUnary (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11063:23)
+      at TypeScriptParserMixin.parseMaybeUnary (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:9854:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10916:61)
+      at TypeScriptParserMixin.parseExprOps (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10921:23)
+      at TypeScriptParserMixin.parseMaybeConditional (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10898:23)
+      at TypeScriptParserMixin.parseMaybeAssign (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10848:21)
+      at TypeScriptParserMixin.parseMaybeAssign (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:9803:20)
+      at TypeScriptParserMixin.parseExpressionBase (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10801:23)
+      at C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10797:39
+      at TypeScriptParserMixin.allowInAnd (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:12443:12)
+      at TypeScriptParserMixin.parseExpression (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10797:17)
+      at TypeScriptParserMixin.parseMember (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11156:28)
+      at TypeScriptParserMixin.parseSubscript (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11141:21)
+      at TypeScriptParserMixin.parseSubscript (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:9289:18)
+      at TypeScriptParserMixin.parseSubscripts (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11111:19)
+      at TypeScriptParserMixin.parseExprSubscripts (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11102:17)
+      at TypeScriptParserMixin.parseUpdate (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11083:21)
+      at TypeScriptParserMixin.parseMaybeUnary (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11063:23)
+      at TypeScriptParserMixin.parseMaybeUnary (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:9854:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10916:61)
+      at TypeScriptParserMixin.parseExprOpBaseRightExpr (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11003:34)
+      at TypeScriptParserMixin.parseExprOpRightExpr (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10998:21)
+      at TypeScriptParserMixin.parseExprOp (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10964:27)
+      at TypeScriptParserMixin.parseExprOp (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:9323:18)
+      at TypeScriptParserMixin.parseExprOps (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10925:17)
+      at TypeScriptParserMixin.parseMaybeConditional (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10898:23)
+      at TypeScriptParserMixin.parseMaybeAssign (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10848:21)
+      at TypeScriptParserMixin.parseMaybeAssign (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:9803:20)
+      at C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10817:39
+      at TypeScriptParserMixin.allowInAnd (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:12438:16)
+      at TypeScriptParserMixin.parseMaybeAssignAllowIn (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10817:17)
+      at TypeScriptParserMixin.parseVar (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:13401:91)
+      at TypeScriptParserMixin.parseVarStatement (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:13247:10)
+      at TypeScriptParserMixin.parseVarStatement (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:9425:31)
+      at TypeScriptParserMixin.parseStatementContent (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:12868:23)
+      at TypeScriptParserMixin.parseStatementContent (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:9525:18)
+      at TypeScriptParserMixin.parseStatementLike (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:12784:17)
+      at TypeScriptParserMixin.parseStatementListItem (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:12764:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:13333:61)
+      at TypeScriptParserMixin.parseBlockBody (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:13326:10)
+      at TypeScriptParserMixin.parseBlock (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:13314:10)
+      at TypeScriptParserMixin.parseFunctionBody (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:12117:24)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:12103:10)
+[2m15:57:10[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/SalesHistoryPage.tsx[22m
+[2m15:57:13[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/SalesHistoryPage.tsx[22m
+C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\src\components\Services\SalesHistory.tsx: Unexpected token (32:42)
+
+[0m [90m 30 |[39m   [36mconst[39m [periodFilter[33m,[39m setPeriodFilter] [33m=[39m useState[33m<[39m[33mPeriodFilter[39m[33m>[39m([32m'month'[39m)[33m;[39m
+ [90m 31 |[39m   [36mconst[39m [showForm[33m,[39m setShowForm] [33m=[39m useState([36mfalse[39m)[33m;[39m
+[31m[1m>[22m[39m[90m 32 |[39m   [36mconst[39m [sales[33m,[39m setSales] [33m=[39m useState[33m<[39m[33mSale[39m[][33m>[39m([
+ [90m    |[39m                                           [31m[1m^[22m[39m
+ [90m 33 |[39m     [90m// Week (last 7 days)[39m
+ [90m 34 |[39m     { id[33m:[39m [32m'1'[39m[33m,[39m serviceName[33m:[39m [32m'Corte de Cabello'[39m[33m,[39m clientName[33m:[39m [32m'Isabel Michoa'[39m[33m,[39m date[33m:[39m [32m'2026-05-23'[39m[33m,[39m price[33m:[39m [35m25[39m[33m,[39m employee[33m:[39m [32m'Rubi'[39m }[33m,[39m
+ [90m 35 |[39m     { id[33m:[39m [32m'2'[39m[33m,[39m serviceName[33m:[39m [32m'Manicura'[39m[33m,[39m clientName[33m:[39m [32m'Pepa Mesa'[39m[33m,[39m date[33m:[39m [32m'2026-05-23'[39m[33m,[39m price[33m:[39m [35m20[39m[33m,[39m employee[33m:[39m [32m'Angela'[39m }[33m,[39m[0m
+C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\src\components\Services\SalesHistory.tsx: Unexpected token (32:42)
+
+[0m [90m 30 |[39m   [36mconst[39m [periodFilter[33m,[39m setPeriodFilter] [33m=[39m useState[33m<[39m[33mPeriodFilter[39m[33m>[39m([32m'month'[39m)[33m;[39m
+ [90m 31 |[39m   [36mconst[39m [showForm[33m,[39m setShowForm] [33m=[39m useState([36mfalse[39m)[33m;[39m
+[31m[1m>[22m[39m[90m 32 |[39m   [36mconst[39m [sales[33m,[39m setSales] [33m=[39m useState[33m<[39m[33mSale[39m[][33m>[39m([
+ [90m    |[39m                                           [31m[1m^[22m[39m
+ [90m 33 |[39m     [90m// Week (last 7 days)[39m
+ [90m 34 |[39m     { id[33m:[39m [32m'1'[39m[33m,[39m serviceName[33m:[39m [32m'Corte de Cabello'[39m[33m,[39m clientName[33m:[39m [32m'Isabel Michoa'[39m[33m,[39m date[33m:[39m [32m'2026-05-23'[39m[33m,[39m price[33m:[39m [35m25[39m[33m,[39m employee[33m:[39m [32m'Rubi'[39m }[33m,[39m
+ [90m 35 |[39m     { id[33m:[39m [32m'2'[39m[33m,[39m serviceName[33m:[39m [32m'Manicura'[39m[33m,[39m clientName[33m:[39m [32m'Pepa Mesa'[39m[33m,[39m date[33m:[39m [32m'2026-05-23'[39m[33m,[39m price[33m:[39m [35m20[39m[33m,[39m employee[33m:[39m [32m'Angela'[39m }[33m,[39m[0m
+[2m15:57:14[22m [31m[1m[vite][22m[39m [31mInternal server error: C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\src\components\Services\SalesHistory.tsx: Unexpected token (32:42)
+
+[0m [90m 30 |[31m   [36mconst[31m [periodFilter[33m,[31m setPeriodFilter] [33m=[31m useState[33m<[31m[33mPeriodFilter[31m[33m>[31m([32m'month'[31m)[33m;[31m
+ [90m 31 |[31m   [36mconst[31m [showForm[33m,[31m setShowForm] [33m=[31m useState([36mfalse[31m)[33m;[31m
+[31m[1m>[22m[31m[90m 32 |[31m   [36mconst[31m [sales[33m,[31m setSales] [33m=[31m useState[33m<[31m[33mSale[31m[][33m>[31m([
+ [90m    |[31m                                           [31m[1m^[22m[31m
+ [90m 33 |[31m     [90m// Week (last 7 days)[31m
+ [90m 34 |[31m     { id[33m:[31m [32m'1'[31m[33m,[31m serviceName[33m:[31m [32m'Corte de Cabello'[31m[33m,[31m clientName[33m:[31m [32m'Isabel Michoa'[31m[33m,[31m date[33m:[31m [32m'2026-05-23'[31m[33m,[31m price[33m:[31m [35m25[31m[33m,[31m employee[33m:[31m [32m'Rubi'[31m }[33m,[31m
+ [90m 35 |[31m     { id[33m:[31m [32m'2'[31m[33m,[31m serviceName[33m:[31m [32m'Manicura'[31m[33m,[31m clientName[33m:[31m [32m'Pepa Mesa'[31m[33m,[31m date[33m:[31m [32m'2026-05-23'[31m[33m,[31m price[33m:[31m [35m20[31m[33m,[31m employee[33m:[31m [32m'Angela'[31m }[33m,[31m[0m[39m
+  Plugin: [35mvite:react-babel[39m
+  File: [36mC:/Users/nacho/OneDrive/Documentos/Claude/Projects/Peluquería Urban Ladies/frontend/src/components/Services/SalesHistory.tsx[39m:32:42
+[33m  30 |    const [periodFilter, setPeriodFilter] = useState<PeriodFilter>('month');
+  31 |    const [showForm, setShowForm] = useState(false);
+  32 |    const [sales, setSales] = useState<Sale[]>([
+     |                                            ^
+  33 |      // Week (last 7 days)
+  34 |      { id: '1', serviceName: 'Corte de Cabello', clientName: 'Isabel Michoa', date: '2026-05-23', price: 25, employee: 'Rubi' },[39m
+      at constructor (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:365:19)
+      at TypeScriptParserMixin.raise (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:6616:19)
+      at TypeScriptParserMixin.unexpected (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:6636:16)
+      at TypeScriptParserMixin.parseExprAtom (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11459:22)
+      at TypeScriptParserMixin.parseExprAtom (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:4776:20)
+      at TypeScriptParserMixin.parseExprSubscripts (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11098:23)
+      at TypeScriptParserMixin.parseUpdate (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11083:21)
+      at TypeScriptParserMixin.parseMaybeUnary (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11063:23)
+      at TypeScriptParserMixin.parseMaybeUnary (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:9854:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10916:61)
+      at TypeScriptParserMixin.parseExprOps (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10921:23)
+      at TypeScriptParserMixin.parseMaybeConditional (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10898:23)
+      at TypeScriptParserMixin.parseMaybeAssign (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10848:21)
+      at TypeScriptParserMixin.parseMaybeAssign (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:9803:20)
+      at TypeScriptParserMixin.parseExpressionBase (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10801:23)
+      at C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10797:39
+      at TypeScriptParserMixin.allowInAnd (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:12443:12)
+      at TypeScriptParserMixin.parseExpression (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10797:17)
+      at TypeScriptParserMixin.parseMember (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11156:28)
+      at TypeScriptParserMixin.parseSubscript (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11141:21)
+      at TypeScriptParserMixin.parseSubscript (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:9289:18)
+      at TypeScriptParserMixin.parseSubscripts (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11111:19)
+      at TypeScriptParserMixin.parseExprSubscripts (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11102:17)
+      at TypeScriptParserMixin.parseUpdate (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11083:21)
+      at TypeScriptParserMixin.parseMaybeUnary (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11063:23)
+      at TypeScriptParserMixin.parseMaybeUnary (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:9854:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10916:61)
+      at TypeScriptParserMixin.parseExprOpBaseRightExpr (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11003:34)
+      at TypeScriptParserMixin.parseExprOpRightExpr (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10998:21)
+      at TypeScriptParserMixin.parseExprOp (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10964:27)
+      at TypeScriptParserMixin.parseExprOp (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:9323:18)
+      at TypeScriptParserMixin.parseExprOps (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10925:17)
+      at TypeScriptParserMixin.parseMaybeConditional (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10898:23)
+      at TypeScriptParserMixin.parseMaybeAssign (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10848:21)
+      at TypeScriptParserMixin.parseMaybeAssign (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:9803:20)
+      at C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10817:39
+      at TypeScriptParserMixin.allowInAnd (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:12438:16)
+      at TypeScriptParserMixin.parseMaybeAssignAllowIn (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10817:17)
+      at TypeScriptParserMixin.parseVar (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:13401:91)
+      at TypeScriptParserMixin.parseVarStatement (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:13247:10)
+      at TypeScriptParserMixin.parseVarStatement (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:9425:31)
+      at TypeScriptParserMixin.parseStatementContent (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:12868:23)
+      at TypeScriptParserMixin.parseStatementContent (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:9525:18)
+      at TypeScriptParserMixin.parseStatementLike (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:12784:17)
+      at TypeScriptParserMixin.parseStatementListItem (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:12764:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:13333:61)
+      at TypeScriptParserMixin.parseBlockBody (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:13326:10)
+      at TypeScriptParserMixin.parseBlock (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:13314:10)
+      at TypeScriptParserMixin.parseFunctionBody (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:12117:24)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:12103:10)
+[2m15:57:19[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/SalesHistoryPage.tsx[22m
+[2m15:57:35[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/SalesHistoryPage.tsx[22m
+C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\src\components\Services\SalesHistory.tsx: Unexpected token (32:42)
+
+[0m [90m 30 |[39m   [36mconst[39m [periodFilter[33m,[39m setPeriodFilter] [33m=[39m useState[33m<[39m[33mPeriodFilter[39m[33m>[39m([32m'month'[39m)[33m;[39m
+ [90m 31 |[39m   [36mconst[39m [showForm[33m,[39m setShowForm] [33m=[39m useState([36mfalse[39m)[33m;[39m
+[31m[1m>[22m[39m[90m 32 |[39m   [36mconst[39m [sales[33m,[39m setSales] [33m=[39m useState[33m<[39m[33mSale[39m[][33m>[39m([
+ [90m    |[39m                                           [31m[1m^[22m[39m
+ [90m 33 |[39m     [90m// Week (last 7 days)[39m
+ [90m 34 |[39m     { id[33m:[39m [32m'1'[39m[33m,[39m serviceName[33m:[39m [32m'Corte de Cabello'[39m[33m,[39m clientName[33m:[39m [32m'Isabel Michoa'[39m[33m,[39m date[33m:[39m [32m'2026-05-23'[39m[33m,[39m price[33m:[39m [35m25[39m[33m,[39m employee[33m:[39m [32m'Rubi'[39m }[33m,[39m
+ [90m 35 |[39m     { id[33m:[39m [32m'2'[39m[33m,[39m serviceName[33m:[39m [32m'Manicura'[39m[33m,[39m clientName[33m:[39m [32m'Pepa Mesa'[39m[33m,[39m date[33m:[39m [32m'2026-05-23'[39m[33m,[39m price[33m:[39m [35m20[39m[33m,[39m employee[33m:[39m [32m'Angela'[39m }[33m,[39m[0m
+C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\src\components\Services\SalesHistory.tsx: Unexpected token (32:42)
+
+[0m [90m 30 |[39m   [36mconst[39m [periodFilter[33m,[39m setPeriodFilter] [33m=[39m useState[33m<[39m[33mPeriodFilter[39m[33m>[39m([32m'month'[39m)[33m;[39m
+ [90m 31 |[39m   [36mconst[39m [showForm[33m,[39m setShowForm] [33m=[39m useState([36mfalse[39m)[33m;[39m
+[31m[1m>[22m[39m[90m 32 |[39m   [36mconst[39m [sales[33m,[39m setSales] [33m=[39m useState[33m<[39m[33mSale[39m[][33m>[39m([
+ [90m    |[39m                                           [31m[1m^[22m[39m
+ [90m 33 |[39m     [90m// Week (last 7 days)[39m
+ [90m 34 |[39m     { id[33m:[39m [32m'1'[39m[33m,[39m serviceName[33m:[39m [32m'Corte de Cabello'[39m[33m,[39m clientName[33m:[39m [32m'Isabel Michoa'[39m[33m,[39m date[33m:[39m [32m'2026-05-23'[39m[33m,[39m price[33m:[39m [35m25[39m[33m,[39m employee[33m:[39m [32m'Rubi'[39m }[33m,[39m
+ [90m 35 |[39m     { id[33m:[39m [32m'2'[39m[33m,[39m serviceName[33m:[39m [32m'Manicura'[39m[33m,[39m clientName[33m:[39m [32m'Pepa Mesa'[39m[33m,[39m date[33m:[39m [32m'2026-05-23'[39m[33m,[39m price[33m:[39m [35m20[39m[33m,[39m employee[33m:[39m [32m'Angela'[39m }[33m,[39m[0m
+[2m15:58:42[22m [31m[1m[vite][22m[39m [31mInternal server error: C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\src\components\Services\SalesHistory.tsx: Unexpected token (32:42)
+
+[0m [90m 30 |[31m   [36mconst[31m [periodFilter[33m,[31m setPeriodFilter] [33m=[31m useState[33m<[31m[33mPeriodFilter[31m[33m>[31m([32m'month'[31m)[33m;[31m
+ [90m 31 |[31m   [36mconst[31m [showForm[33m,[31m setShowForm] [33m=[31m useState([36mfalse[31m)[33m;[31m
+[31m[1m>[22m[31m[90m 32 |[31m   [36mconst[31m [sales[33m,[31m setSales] [33m=[31m useState[33m<[31m[33mSale[31m[][33m>[31m([
+ [90m    |[31m                                           [31m[1m^[22m[31m
+ [90m 33 |[31m     [90m// Week (last 7 days)[31m
+ [90m 34 |[31m     { id[33m:[31m [32m'1'[31m[33m,[31m serviceName[33m:[31m [32m'Corte de Cabello'[31m[33m,[31m clientName[33m:[31m [32m'Isabel Michoa'[31m[33m,[31m date[33m:[31m [32m'2026-05-23'[31m[33m,[31m price[33m:[31m [35m25[31m[33m,[31m employee[33m:[31m [32m'Rubi'[31m }[33m,[31m
+ [90m 35 |[31m     { id[33m:[31m [32m'2'[31m[33m,[31m serviceName[33m:[31m [32m'Manicura'[31m[33m,[31m clientName[33m:[31m [32m'Pepa Mesa'[31m[33m,[31m date[33m:[31m [32m'2026-05-23'[31m[33m,[31m price[33m:[31m [35m20[31m[33m,[31m employee[33m:[31m [32m'Angela'[31m }[33m,[31m[0m[39m
+  Plugin: [35mvite:react-babel[39m
+  File: [36mC:/Users/nacho/OneDrive/Documentos/Claude/Projects/Peluquería Urban Ladies/frontend/src/components/Services/SalesHistory.tsx[39m:32:42
+[33m  30 |    const [periodFilter, setPeriodFilter] = useState<PeriodFilter>('month');
+  31 |    const [showForm, setShowForm] = useState(false);
+  32 |    const [sales, setSales] = useState<Sale[]>([
+     |                                            ^
+  33 |      // Week (last 7 days)
+  34 |      { id: '1', serviceName: 'Corte de Cabello', clientName: 'Isabel Michoa', date: '2026-05-23', price: 25, employee: 'Rubi' },[39m
+      at constructor (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:365:19)
+      at TypeScriptParserMixin.raise (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:6616:19)
+      at TypeScriptParserMixin.unexpected (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:6636:16)
+      at TypeScriptParserMixin.parseExprAtom (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11459:22)
+      at TypeScriptParserMixin.parseExprAtom (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:4776:20)
+      at TypeScriptParserMixin.parseExprSubscripts (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11098:23)
+      at TypeScriptParserMixin.parseUpdate (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11083:21)
+      at TypeScriptParserMixin.parseMaybeUnary (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11063:23)
+      at TypeScriptParserMixin.parseMaybeUnary (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:9854:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10916:61)
+      at TypeScriptParserMixin.parseExprOps (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10921:23)
+      at TypeScriptParserMixin.parseMaybeConditional (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10898:23)
+      at TypeScriptParserMixin.parseMaybeAssign (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10848:21)
+      at TypeScriptParserMixin.parseMaybeAssign (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:9803:20)
+      at TypeScriptParserMixin.parseExpressionBase (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10801:23)
+      at C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10797:39
+      at TypeScriptParserMixin.allowInAnd (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:12443:12)
+      at TypeScriptParserMixin.parseExpression (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10797:17)
+      at TypeScriptParserMixin.parseMember (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11156:28)
+      at TypeScriptParserMixin.parseSubscript (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11141:21)
+      at TypeScriptParserMixin.parseSubscript (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:9289:18)
+      at TypeScriptParserMixin.parseSubscripts (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11111:19)
+      at TypeScriptParserMixin.parseExprSubscripts (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11102:17)
+      at TypeScriptParserMixin.parseUpdate (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11083:21)
+      at TypeScriptParserMixin.parseMaybeUnary (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11063:23)
+      at TypeScriptParserMixin.parseMaybeUnary (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:9854:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10916:61)
+      at TypeScriptParserMixin.parseExprOpBaseRightExpr (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11003:34)
+      at TypeScriptParserMixin.parseExprOpRightExpr (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10998:21)
+      at TypeScriptParserMixin.parseExprOp (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10964:27)
+      at TypeScriptParserMixin.parseExprOp (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:9323:18)
+      at TypeScriptParserMixin.parseExprOps (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10925:17)
+      at TypeScriptParserMixin.parseMaybeConditional (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10898:23)
+      at TypeScriptParserMixin.parseMaybeAssign (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10848:21)
+      at TypeScriptParserMixin.parseMaybeAssign (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:9803:20)
+      at C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10817:39
+      at TypeScriptParserMixin.allowInAnd (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:12438:16)
+      at TypeScriptParserMixin.parseMaybeAssignAllowIn (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10817:17)
+      at TypeScriptParserMixin.parseVar (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:13401:91)
+      at TypeScriptParserMixin.parseVarStatement (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:13247:10)
+      at TypeScriptParserMixin.parseVarStatement (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:9425:31)
+      at TypeScriptParserMixin.parseStatementContent (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:12868:23)
+      at TypeScriptParserMixin.parseStatementContent (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:9525:18)
+      at TypeScriptParserMixin.parseStatementLike (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:12784:17)
+      at TypeScriptParserMixin.parseStatementListItem (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:12764:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:13333:61)
+      at TypeScriptParserMixin.parseBlockBody (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:13326:10)
+      at TypeScriptParserMixin.parseBlock (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:13314:10)
+      at TypeScriptParserMixin.parseFunctionBody (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:12117:24)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:12103:10)
+[2m15:58:51[22m [31m[1m[vite][22m[39m [31mInternal server error: C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\src\components\Services\SalesHistory.tsx: Unexpected token (32:42)
+
+[0m [90m 30 |[31m   [36mconst[31m [periodFilter[33m,[31m setPeriodFilter] [33m=[31m useState[33m<[31m[33mPeriodFilter[31m[33m>[31m([32m'month'[31m)[33m;[31m
+ [90m 31 |[31m   [36mconst[31m [showForm[33m,[31m setShowForm] [33m=[31m useState([36mfalse[31m)[33m;[31m
+[31m[1m>[22m[31m[90m 32 |[31m   [36mconst[31m [sales[33m,[31m setSales] [33m=[31m useState[33m<[31m[33mSale[31m[][33m>[31m([
+ [90m    |[31m                                           [31m[1m^[22m[31m
+ [90m 33 |[31m     [90m// Week (last 7 days)[31m
+ [90m 34 |[31m     { id[33m:[31m [32m'1'[31m[33m,[31m serviceName[33m:[31m [32m'Corte de Cabello'[31m[33m,[31m clientName[33m:[31m [32m'Isabel Michoa'[31m[33m,[31m date[33m:[31m [32m'2026-05-23'[31m[33m,[31m price[33m:[31m [35m25[31m[33m,[31m employee[33m:[31m [32m'Rubi'[31m }[33m,[31m
+ [90m 35 |[31m     { id[33m:[31m [32m'2'[31m[33m,[31m serviceName[33m:[31m [32m'Manicura'[31m[33m,[31m clientName[33m:[31m [32m'Pepa Mesa'[31m[33m,[31m date[33m:[31m [32m'2026-05-23'[31m[33m,[31m price[33m:[31m [35m20[31m[33m,[31m employee[33m:[31m [32m'Angela'[31m }[33m,[31m[0m[39m
+  Plugin: [35mvite:react-babel[39m
+  File: [36mC:/Users/nacho/OneDrive/Documentos/Claude/Projects/Peluquería Urban Ladies/frontend/src/components/Services/SalesHistory.tsx[39m:32:42
+[33m  30 |    const [periodFilter, setPeriodFilter] = useState<PeriodFilter>('month');
+  31 |    const [showForm, setShowForm] = useState(false);
+  32 |    const [sales, setSales] = useState<Sale[]>([
+     |                                            ^
+  33 |      // Week (last 7 days)
+  34 |      { id: '1', serviceName: 'Corte de Cabello', clientName: 'Isabel Michoa', date: '2026-05-23', price: 25, employee: 'Rubi' },[39m
+      at constructor (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:365:19)
+      at TypeScriptParserMixin.raise (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:6616:19)
+      at TypeScriptParserMixin.unexpected (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:6636:16)
+      at TypeScriptParserMixin.parseExprAtom (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11459:22)
+      at TypeScriptParserMixin.parseExprAtom (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:4776:20)
+      at TypeScriptParserMixin.parseExprSubscripts (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11098:23)
+      at TypeScriptParserMixin.parseUpdate (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11083:21)
+      at TypeScriptParserMixin.parseMaybeUnary (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11063:23)
+      at TypeScriptParserMixin.parseMaybeUnary (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:9854:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10916:61)
+      at TypeScriptParserMixin.parseExprOps (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10921:23)
+      at TypeScriptParserMixin.parseMaybeConditional (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10898:23)
+      at TypeScriptParserMixin.parseMaybeAssign (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10848:21)
+      at TypeScriptParserMixin.parseMaybeAssign (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:9803:20)
+      at TypeScriptParserMixin.parseExpressionBase (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10801:23)
+      at C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10797:39
+      at TypeScriptParserMixin.allowInAnd (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:12443:12)
+      at TypeScriptParserMixin.parseExpression (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10797:17)
+      at TypeScriptParserMixin.parseMember (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11156:28)
+      at TypeScriptParserMixin.parseSubscript (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11141:21)
+      at TypeScriptParserMixin.parseSubscript (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:9289:18)
+      at TypeScriptParserMixin.parseSubscripts (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11111:19)
+      at TypeScriptParserMixin.parseExprSubscripts (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11102:17)
+      at TypeScriptParserMixin.parseUpdate (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11083:21)
+      at TypeScriptParserMixin.parseMaybeUnary (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11063:23)
+      at TypeScriptParserMixin.parseMaybeUnary (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:9854:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10916:61)
+      at TypeScriptParserMixin.parseExprOpBaseRightExpr (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:11003:34)
+      at TypeScriptParserMixin.parseExprOpRightExpr (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10998:21)
+      at TypeScriptParserMixin.parseExprOp (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10964:27)
+      at TypeScriptParserMixin.parseExprOp (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:9323:18)
+      at TypeScriptParserMixin.parseExprOps (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10925:17)
+      at TypeScriptParserMixin.parseMaybeConditional (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10898:23)
+      at TypeScriptParserMixin.parseMaybeAssign (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10848:21)
+      at TypeScriptParserMixin.parseMaybeAssign (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:9803:20)
+      at C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10817:39
+      at TypeScriptParserMixin.allowInAnd (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:12438:16)
+      at TypeScriptParserMixin.parseMaybeAssignAllowIn (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:10817:17)
+      at TypeScriptParserMixin.parseVar (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:13401:91)
+      at TypeScriptParserMixin.parseVarStatement (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:13247:10)
+      at TypeScriptParserMixin.parseVarStatement (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:9425:31)
+      at TypeScriptParserMixin.parseStatementContent (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:12868:23)
+      at TypeScriptParserMixin.parseStatementContent (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:9525:18)
+      at TypeScriptParserMixin.parseStatementLike (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:12784:17)
+      at TypeScriptParserMixin.parseStatementListItem (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:12764:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:13333:61)
+      at TypeScriptParserMixin.parseBlockBody (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:13326:10)
+      at TypeScriptParserMixin.parseBlock (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:13314:10)
+      at TypeScriptParserMixin.parseFunctionBody (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:12117:24)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (C:\Users\nacho\OneDrive\Documentos\Claude\Projects\Peluquería Urban Ladies\frontend\node_modules\@babel\parser\lib\index.js:12103:10)
