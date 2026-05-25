@@ -72,7 +72,7 @@ export function DashboardContent() {
     const last7Days = new Date(today);
     last7Days.setDate(last7Days.getDate() - 7);
 
-    const dayMap = {};
+    const dayMap: Record<string, number> = {};
     for (let i = 0; i < 7; i++) {
       const d = new Date(today);
       d.setDate(d.getDate() - i);
@@ -102,7 +102,7 @@ export function DashboardContent() {
     last30Days.setMonth(last30Days.getMonth() - 1);
 
     const filtered = sales.filter(s => new Date(s.date) >= last30Days);
-    const performance = {};
+    const performance: Record<string, { sales: number; revenue: number }> = {};
 
     EMPLOYEES.forEach(emp => {
       performance[emp] = {
@@ -130,7 +130,7 @@ export function DashboardContent() {
     last30Days.setMonth(last30Days.getMonth() - 1);
 
     const filtered = sales.filter(s => new Date(s.date) >= last30Days);
-    const breakdown = {};
+    const breakdown: Record<string, { name: string; sales: number; revenue: number }> = {};
 
     filtered.forEach(s => {
       if (!breakdown[s.serviceName]) {
@@ -245,7 +245,7 @@ export function DashboardContent() {
                   outerRadius={100}
                   label
                 >
-                  {serviceBreakdown.map((entry, index) => (
+                  {serviceBreakdown.map((_entry, index) => (
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Pie>

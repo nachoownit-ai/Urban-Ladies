@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Plus, Edit, Trash2, BarChart3, X } from 'lucide-react';
-import { BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line } from 'recharts';
+import { Plus, Edit, Trash2, X } from 'lucide-react';
+import { BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 interface ServiceHistory {
   id: string;
@@ -177,6 +177,7 @@ export function ServiceDashboard() {
         description: formData.description,
         soldCount: 0,
         totalRevenue: 0,
+        history: [],
       };
       setServices([...services, newService]);
     }
@@ -236,7 +237,7 @@ export function ServiceDashboard() {
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" tick={{ fontSize: 12 }} angle={-45} textAnchor="end" height={80} />
               <YAxis tick={{ fontSize: 12 }} />
-              <Tooltip formatter={(value) => `€€{value}`} />
+              <Tooltip formatter={(value) => `€${value}`} />
               <Bar dataKey="revenue" fill="#1e3a5f" />
             </BarChart>
           </ResponsiveContainer>
@@ -252,16 +253,16 @@ export function ServiceDashboard() {
                 cx="50%"
                 cy="50%"
                 labelLine={false}
-                label={({ name, value }) => `€{name}: €€{value}`}
+                label={({ name, value }) => `${name}: €${value}`}
                 outerRadius={80}
                 fill="#8884d8"
                 dataKey="value"
               >
-                {categoryData.map((_, index) => (
-                  <Cell key={`cell-€{index}`} fill={COLORS[index % COLORS.length]} />
+                {categoryData.map((_entry, index) => (
+                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                 ))}
               </Pie>
-              <Tooltip formatter={(value) => `€€{value}`} />
+              <Tooltip formatter={(value) => `€${value}`} />
             </PieChart>
           </ResponsiveContainer>
         </div>

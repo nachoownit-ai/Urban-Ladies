@@ -25,7 +25,7 @@ export function Sidebar() {
       </button>
 
       <aside
-        className={`fixed md:static top-0 left-0 h-screen w-64 bg-primary-900 text-white p-6 transform md:transform-none transition-transform z-40 €{
+        className={`fixed md:static top-0 left-0 h-screen w-64 bg-primary-900 text-white p-6 transform md:transform-none transition-transform z-40 ${
           isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
         }`}
       >
@@ -42,7 +42,7 @@ export function Sidebar() {
               key={item.path}
               to={item.path}
               onClick={() => setIsOpen(false)}
-              className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors €{
+              className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
                 isActive(item.path)
                   ? 'bg-primary-700 text-white'
                   : 'text-primary-200 hover:bg-primary-800'

@@ -1,9 +1,6 @@
-import { useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
-import { useAuthStore } from './store/authStore';
 import { TopBar } from './components/Layout/TopBar';
-import { LoginPage } from './pages/LoginPage';
 import { DashboardPage } from './pages/DashboardPage';
 import { AppointmentsPage } from './pages/AppointmentsPage';
 import { ClientsPage } from './pages/ClientsPage';
@@ -14,11 +11,6 @@ import { SettingsPage } from './pages/SettingsPage';
 import { ReportsPage } from './pages/ReportsPage';
 
 const queryClient = new QueryClient();
-
-function ProtectedRoute({ children }: { children: JSX.Element }) {
-  const { token } = useAuthStore();
-  return token ? children : <Navigate to="/login" />;
-}
 
 function AppLayout() {
   return (

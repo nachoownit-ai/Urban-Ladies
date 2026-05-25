@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { User, AuthResponse } from '../types/index.js';
+import { User } from '../types/index.js';
 import { authAPI } from '../api/client.js';
 
 interface AuthStore {

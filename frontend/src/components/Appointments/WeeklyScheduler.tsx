@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 
 interface Appointment {
@@ -161,7 +161,7 @@ export function WeeklyScheduler() {
 
                   return (
                     <td
-                      key={`€{hour}-€{dayIdx}`}
+                      key={`${hour}-${dayIdx}`}
                       className="px-2 py-2 border-l border-gray-200 min-w-[150px]"
                     >
                       {appointment ? (

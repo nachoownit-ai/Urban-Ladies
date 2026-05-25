@@ -1,6 +1,6 @@
 import { useAuthStore } from '../../store/authStore';
 import { Link, useLocation } from 'react-router-dom';
-import { Bell, LogOut, BarChart3, Calendar, Users, Settings, TrendingUp, CreditCard, Sliders, FileText } from 'lucide-react';
+import { LogOut, BarChart3, Calendar, Users, Settings, TrendingUp, CreditCard, Sliders, FileText } from 'lucide-react';
 
 export function TopBar() {
   const { user, logout } = useAuthStore();

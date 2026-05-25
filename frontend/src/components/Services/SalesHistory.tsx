@@ -39,7 +39,7 @@ export function SalesHistory() {
     notes: '',
   });
 
-  const getDateRange = (filter) => {
+  const getDateRange = (filter: string) => {
     const today = new Date();
     const startDate = new Date(today);
 
@@ -54,7 +54,7 @@ export function SalesHistory() {
     return startDate;
   };
 
-  const getServicePrice = (serviceName) => {
+  const getServicePrice = (serviceName: string) => {
     const service = SERVICES.find(s => s.name === serviceName);
     return service ? service.price : 0;
   };
@@ -86,7 +86,7 @@ export function SalesHistory() {
     setShowForm(false);
   };
 
-  const handleDeleteSale = (id) => {
+  const handleDeleteSale = (id: string) => {
     setSales(sales.filter(sale => sale.id !== id));
   };
 
@@ -107,7 +107,7 @@ export function SalesHistory() {
       : 0,
   };
 
-  const dailyRevenue = filteredSales.reduce((acc, sale) => {
+  const dailyRevenue: Array<{ date: string; revenue: number; sales: number }> = filteredSales.reduce((acc: Array<{ date: string; revenue: number; sales: number }>, sale) => {
     const date = sale.date;
     const existing = acc.find(item => item.date === date);
     if (existing) {
@@ -119,7 +119,7 @@ export function SalesHistory() {
     return acc;
   }, []).sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
-  const serviceBreakdown = filteredSales.reduce((acc, sale) => {
+  const serviceBreakdown: Array<{ name: string; sales: number; revenue: number }> = filteredSales.reduce((acc: Array<{ name: string; sales: number; revenue: number }>, sale) => {
     const existing = acc.find(item => item.name === sale.serviceName);
     if (existing) {
       existing.sales += 1;
