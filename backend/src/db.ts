@@ -6,23 +6,32 @@ import path from 'path';
 // Detectar si usamos Supabase o SQLite local
 const useSupabase = !!process.env.SUPABASE_URL && !!process.env.SUPABASE_SERVICE_KEY;
 
+let supabaseClient: any = null;
 let sqliteDb: sqlite3.Database | null = null;
 
-// Crear cliente Supabase con soporte WebSocket para Node.js 20
-export const supabase = useSupabase
-  ? createClient(
-      process.env.SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_KEY!,
-      {
-        realtime: {
-          transport: ws,
-        },
-        auth: {
-          persistSession: false,
-        },
-      }
-    )
-  : null;
+// Lazy initialization - NO se ejecuta en startup
+function initializeSupabase() {
+  if (!supabaseClient && useSupabase) {
+    const supabaseUrl = process.env.SUPABASE_URL;
+    const supabaseServiceKey = process.env.SUPABASE_SERVICE_KEY;
+
+    if (!supabaseUrl || !supabaseServiceKey) {
+      throw new Error('Missing Supabase credentials');
+    }
+
+    supabaseClient = createClient(supabaseUrl, supabaseServiceKey, {
+      realtime: {
+        transport: ws,
+      },
+      auth: {
+        persistSession: false,
+      },
+    });
+
+    console.log('✓ Connected to Supabase PostgreSQL');
+  }
+  return supabaseClient;
+}
 
 function initializeSQLite() {
   if (!sqliteDb && !useSupabase) {
@@ -45,17 +54,25 @@ function initializeSQLite() {
 
 export function getDb() {
   if (useSupabase) {
-    return supabase;
+    return initializeSupabase();
   } else {
     return initializeSQLite();
   }
 }
 
+// Export para acceso directo (también lazy)
+export const supabase = new Proxy({} as any, {
+  get: (target, prop) => {
+    const client = initializeSupabase();
+    return (client as any)[prop];
+  },
+});
+
 export const db = null; // Deprecated: use getDb() instead
 
 export function initializeDatabase() {
   if (useSupabase) {
-    console.log('✓ Supabase client initialized (will connect on first request)');
+    console.log('✓ Supabase will initialize on first request');
     return Promise.resolve();
   } else {
     // SQLite initialization
