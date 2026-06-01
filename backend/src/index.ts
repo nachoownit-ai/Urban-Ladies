@@ -38,6 +38,7 @@ async function start() {
       app.listen(env.PORT, () => {
         console.log(`✓ Server running on http://localhost:${env.PORT}`);
         console.log(`✓ Environment: ${env.NODE_ENV}`);
+        console.log(`✓ N8N Endpoints available at /api/n8n/`);
       });
     }, 100);
   } catch (error) {
