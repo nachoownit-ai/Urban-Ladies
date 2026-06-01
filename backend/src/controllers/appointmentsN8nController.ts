@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { createClient } from '@supabase/supabase-js';
 import { v4 as uuidv4 } from 'uuid';
+import ws from 'ws';
 
 // Initialize Supabase client lazily (only when needed)
 let supabaseClient: any = null;
@@ -15,7 +16,9 @@ function getSupabaseClient() {
     }
 
     supabaseClient = createClient(supabaseUrl, supabaseServiceKey, {
-      realtime: false,
+      realtime: {
+        transport: ws,
+      },
       auth: {
         persistSession: false,
       },
