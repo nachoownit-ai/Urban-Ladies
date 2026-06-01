@@ -2,15 +2,10 @@ import { Request, Response } from 'express';
 import { v4 as uuidv4 } from 'uuid';
 import { supabase } from '../db.js';
 
-/**
- * Check availability for a given date, time, service, and optional professional
- * GET /api/n8n/check-availability?service=Corte&date=2026-05-30&start_time=10:00&end_time=10:45&professional=Rubi
- */
 export async function checkAvailability(req: Request, res: Response) {
   try {
     const { service, date, start_time, end_time, professional } = req.query;
 
-    // Validate required parameters
     if (!service || !date || !start_time || !end_time) {
       return res.status(400).json({
         success: false,
@@ -18,8 +13,8 @@ export async function checkAvailability(req: Request, res: Response) {
       });
     }
 
-    // Query appointments table for conflicts
-    const { data: appointments, error } = await supabase
+    const client = supabase.client;
+    const { data: appointments, error } = await client
       .from('appointments')
       .select('*')
       .eq('appointment_date', date as string)
@@ -33,7 +28,6 @@ export async function checkAvailability(req: Request, res: Response) {
       });
     }
 
-    // Filter by professional if provided
     let relevantAppointments = appointments || [];
     if (professional) {
       relevantAppointments = relevantAppointments.filter(
@@ -41,14 +35,11 @@ export async function checkAvailability(req: Request, res: Response) {
       );
     }
 
-    // Check for time conflicts
     const hasConflict = relevantAppointments.some((apt) => {
       const appointmentStart = apt.start_time;
       const appointmentEnd = apt.end_time;
       const queryStart = start_time as string;
       const queryEnd = end_time as string;
-
-      // Check if times overlap
       return queryStart < appointmentEnd && queryEnd > appointmentStart;
     });
 
@@ -78,11 +69,6 @@ export async function checkAvailability(req: Request, res: Response) {
   }
 }
 
-/**
- * Create a new appointment
- * POST /api/n8n/create-appointment
- * Body: { name, last_name, phone, service, date, start_time, end_time, professional (optional) }
- */
 export async function createAppointment(req: Request, res: Response) {
   try {
     const {
@@ -97,7 +83,6 @@ export async function createAppointment(req: Request, res: Response) {
       notes,
     } = req.body;
 
-    // Validate required fields
     if (!name || !last_name || !phone || !service || !appointment_date || !start_time || !end_time) {
       return res.status(400).json({
         success: false,
@@ -106,8 +91,8 @@ export async function createAppointment(req: Request, res: Response) {
       });
     }
 
-    // Check availability before creating
-    const { data: conflictingAppointments, error: checkError } = await supabase
+    const client = supabase.client;
+    const { data: conflictingAppointments, error: checkError } = await client
       .from('appointments')
       .select('*')
       .eq('appointment_date', appointment_date)
@@ -121,7 +106,6 @@ export async function createAppointment(req: Request, res: Response) {
       });
     }
 
-    // Check for time conflicts
     const hasConflict = (conflictingAppointments || []).some((apt) => {
       const apptStart = apt.start_time;
       const apptEnd = apt.end_time;
@@ -135,7 +119,6 @@ export async function createAppointment(req: Request, res: Response) {
       });
     }
 
-    // Create the appointment
     const appointmentData = {
       id: uuidv4(),
       name,
@@ -152,7 +135,7 @@ export async function createAppointment(req: Request, res: Response) {
       updated_at: new Date().toISOString(),
     };
 
-    const { data, error } = await supabase
+    const { data, error } = await client
       .from('appointments')
       .insert([appointmentData])
       .select();
@@ -187,16 +170,10 @@ export async function createAppointment(req: Request, res: Response) {
   }
 }
 
-/**
- * Cancel an appointment
- * POST /api/n8n/cancel-appointment
- * Body: { name, last_name, phone, date, start_time, end_time }
- */
 export async function cancelAppointment(req: Request, res: Response) {
   try {
     const { name, last_name, phone, appointment_date, start_time, end_time } = req.body;
 
-    // Validate required fields
     if (!name || !last_name || !phone || !appointment_date || !start_time || !end_time) {
       return res.status(400).json({
         success: false,
@@ -205,8 +182,8 @@ export async function cancelAppointment(req: Request, res: Response) {
       });
     }
 
-    // Find the appointment to cancel
-    const { data: appointments, error: findError } = await supabase
+    const client = supabase.client;
+    const { data: appointments, error: findError } = await client
       .from('appointments')
       .select('*')
       .eq('name', name)
@@ -233,8 +210,7 @@ export async function cancelAppointment(req: Request, res: Response) {
 
     const appointmentToCancel = appointments[0];
 
-    // Cancel the appointment (set status to cancelled)
-    const { error: updateError } = await supabase
+    const { error: updateError } = await client
       .from('appointments')
       .update({
         status: 'cancelled',
