@@ -1,6 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 import sqlite3 from 'sqlite3';
 import path from 'path';
+import ws from 'ws';
 
 // Detectar si usamos Supabase o SQLite local
 const useSupabase = !!process.env.SUPABASE_URL && !!process.env.SUPABASE_SERVICE_KEY;
@@ -12,7 +13,18 @@ if (useSupabase) {
   // Usar Supabase PostgreSQL
   supabaseClient = createClient(
     process.env.SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_KEY!
+    process.env.SUPABASE_SERVICE_KEY!,
+    {
+      realtime: {
+        params: {
+          eventsPerSecond: 10,
+        },
+      },
+      global: {
+        // @ts-ignore - ws is for Node.js environment
+        fetch: undefined,
+      },
+    }
   );
   console.log('✓ Connected to Supabase PostgreSQL');
 } else {
