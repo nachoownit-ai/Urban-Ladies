@@ -223,7 +223,7 @@ export async function cancelAppointment(req: Request, res: Response) {
     }
 
     // Find the appointment to cancel
-    const { data: appointments, error: findError } = await supabase
+    const { data: appointments, error: findError } = await getSupabaseClient()
       .from('appointments')
       .select('*')
       .eq('name', name)
@@ -251,7 +251,7 @@ export async function cancelAppointment(req: Request, res: Response) {
     const appointmentToCancel = appointments[0];
 
     // Cancel the appointment (set status to cancelled)
-    const { error: updateError } = await supabase
+    const { error: updateError } = await getSupabaseClient()
       .from('appointments')
       .update({
         status: 'cancelled',
