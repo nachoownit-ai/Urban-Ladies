@@ -14,7 +14,6 @@ function getSupabaseClient() {
         process.env.SUPABASE_SERVICE_KEY!,
         {
           auth: { persistSession: false },
-          realtime: { channels: { maxReconnectAttempts: 0 } },
         }
       );
       console.log('✓ Supabase initialized');
