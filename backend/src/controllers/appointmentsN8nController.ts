@@ -132,7 +132,6 @@ export async function createAppointment(req: Request, res: Response) {
       end_time,
       status: 'active',
       notes: notes || null,
-      salon_id: 'default-salon',
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),
     };
@@ -189,7 +188,6 @@ export async function cancelAppointment(req: Request, res: Response) {
       start_time: `eq.${start_time}`,
       end_time: `eq.${end_time}`,
       status: 'eq.active',
-      salon_id: 'eq.default-salon',
     });
 
     if (findError) {

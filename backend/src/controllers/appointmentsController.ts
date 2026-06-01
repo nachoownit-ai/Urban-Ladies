@@ -100,9 +100,8 @@ export async function createAppointment(req: Request, res: Response) {
 export async function getAppointments(req: Request, res: Response) {
   try {
     const { date, employee_name, status } = req.query;
-    const salon_id = (req.user as any)?.salon_id || 'default-salon';
 
-    let query = db.from('appointments').eq('salon_id', salon_id);
+    let query = db.from('appointments').select('*');
 
     if (date) {
       query = query.eq('appointment_date', date as string);
