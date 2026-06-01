@@ -2,14 +2,22 @@ import { Request, Response } from 'express';
 import { createClient } from '@supabase/supabase-js';
 import { v4 as uuidv4 } from 'uuid';
 
-const supabaseUrl = process.env.SUPABASE_URL;
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_KEY;
+// Initialize Supabase client lazily (only when needed)
+let supabaseClient: any = null;
 
-if (!supabaseUrl || !supabaseServiceKey) {
-  throw new Error('Missing Supabase credentials in environment variables');
+function getSupabaseClient() {
+  if (!supabaseClient) {
+    const supabaseUrl = process.env.SUPABASE_URL;
+    const supabaseServiceKey = process.env.SUPABASE_SERVICE_KEY;
+
+    if (!supabaseUrl || !supabaseServiceKey) {
+      throw new Error('Missing Supabase credentials in environment variables');
+    }
+
+    supabaseClient = createClient(supabaseUrl, supabaseServiceKey);
+  }
+  return supabaseClient;
 }
-
-const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
 /**
  * Check availability for a given date, time, service, and optional professional
@@ -28,7 +36,7 @@ export async function checkAvailability(req: Request, res: Response) {
     }
 
     // Query appointments table for conflicts
-    const { data: appointments, error } = await supabase
+    const { data: appointments, error } = await getSupabaseClient()
       .from('appointments')
       .select('*')
       .eq('appointment_date', date as string)
@@ -116,7 +124,7 @@ export async function createAppointment(req: Request, res: Response) {
     }
 
     // Check availability before creating
-    const { data: conflictingAppointments, error: checkError } = await supabase
+    const { data: conflictingAppointments, error: checkError } = await getSupabaseClient()
       .from('appointments')
       .select('*')
       .eq('appointment_date', appointment_date)
@@ -161,7 +169,7 @@ export async function createAppointment(req: Request, res: Response) {
       updated_at: new Date().toISOString(),
     };
 
-    const { data, error } = await supabase
+    const { data, error } = await getSupabaseClient()
       .from('appointments')
       .insert([appointmentData])
       .select();
