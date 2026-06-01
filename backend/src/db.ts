@@ -1,63 +1,49 @@
-import ws from 'ws';
-import { createClient } from '@supabase/supabase-js';
-import sqlite3 from 'sqlite3';
-import path from 'path';
-
-const useSupabase = !!process.env.SUPABASE_URL && !!process.env.SUPABASE_SERVICE_KEY;
-
-if (useSupabase && (!process.env.SUPABASE_URL || !process.env.SUPABASE_SERVICE_KEY)) {
-  throw new Error('Missing Supabase credentials');
+export function getSupabaseUrl() {
+  return process.env.SUPABASE_URL || '';
 }
 
-export const supabase = useSupabase
-  ? createClient(
-      process.env.SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_KEY!,
-      {
-        realtime: {
-          transport: ws,
-        },
-      }
-    )
-  : null;
+export function getSupabaseKey() {
+  return process.env.SUPABASE_SERVICE_KEY || '';
+}
 
-let sqliteDb: sqlite3.Database | null = null;
+export async function supabaseQuery(table: string, method: string = 'GET', body?: any, filters?: any) {
+  const url = new URL(`${getSupabaseUrl()}/rest/v1/${table}`);
 
-function initializeSQLite() {
-  if (!sqliteDb && !useSupabase) {
-    try {
-      const dbPath = path.join(process.cwd(), 'urban_ladies.db');
-      sqliteDb = new sqlite3.Database(dbPath);
-      sqliteDb.run('PRAGMA foreign_keys = ON');
-      console.log('✓ SQLite initialized');
-    } catch (error) {
-      console.error('SQLite error:', error);
-    }
+  if (filters) {
+    Object.entries(filters).forEach(([key, value]) => {
+      url.searchParams.append(key, String(value));
+    });
   }
-  return sqliteDb;
-}
 
-export function getDb() {
-  return useSupabase ? supabase : initializeSQLite();
+  const options: any = {
+    method,
+    headers: {
+      'apikey': getSupabaseKey(),
+      'Authorization': `Bearer ${getSupabaseKey()}`,
+      'Content-Type': 'application/json',
+    },
+  };
+
+  if (body && (method === 'POST' || method === 'PUT' || method === 'PATCH')) {
+    options.body = JSON.stringify(body);
+  }
+
+  try {
+    const response = await fetch(url.toString(), options);
+    if (!response.ok) {
+      const errorData = await response.json();
+      return { data: null, error: errorData };
+    }
+    const data = await response.json();
+    return { data, error: null };
+  } catch (error: any) {
+    return { data: null, error: { message: error.message } };
+  }
 }
 
 export const db = null;
 
 export function initializeDatabase() {
-  if (useSupabase) {
-    console.log('✓ Supabase initialized');
-    return Promise.resolve();
-  }
-  return new Promise<void>((resolve) => {
-    try {
-      const database = initializeSQLite();
-      if (database) {
-        console.log('✓ Database initialized');
-      }
-      resolve();
-    } catch (error) {
-      console.error('Init error:', error);
-      resolve();
-    }
-  });
+  console.log('✓ Database initialized (REST API mode)');
+  return Promise.resolve();
 }

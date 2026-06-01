@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { v4 as uuidv4 } from 'uuid';
-import { supabase } from '../db.js';
+import { supabaseQuery } from '../db.js';
 
 export async function checkAvailability(req: Request, res: Response) {
   try {
@@ -13,12 +13,11 @@ export async function checkAvailability(req: Request, res: Response) {
       });
     }
 
-    const { data: appointments, error } = await supabase
-      .from('appointments')
-      .select('*')
-      .eq('appointment_date', date as string)
-      .eq('service', service as string)
-      .eq('status', 'active');
+    const { data: appointments, error } = await supabaseQuery('appointments', 'GET', undefined, {
+      appointment_date: `eq.${date}`,
+      service: `eq.${service}`,
+      status: 'eq.active',
+    });
 
     if (error) {
       return res.status(400).json({
@@ -30,11 +29,11 @@ export async function checkAvailability(req: Request, res: Response) {
     let relevantAppointments = appointments || [];
     if (professional) {
       relevantAppointments = relevantAppointments.filter(
-        (apt) => apt.professional === professional
+        (apt: any) => apt.professional === professional
       );
     }
 
-    const hasConflict = relevantAppointments.some((apt) => {
+    const hasConflict = relevantAppointments.some((apt: any) => {
       const appointmentStart = apt.start_time;
       const appointmentEnd = apt.end_time;
       const queryStart = start_time as string;
@@ -90,13 +89,16 @@ export async function createAppointment(req: Request, res: Response) {
       });
     }
 
-    const client = supabase.client;
-    const { data: conflictingAppointments, error: checkError } = await supabase
-      .from('appointments')
-      .select('*')
-      .eq('appointment_date', appointment_date)
-      .eq('service', service)
-      .eq('status', 'active');
+    const { data: conflictingAppointments, error: checkError } = await supabaseQuery(
+      'appointments',
+      'GET',
+      undefined,
+      {
+        appointment_date: `eq.${appointment_date}`,
+        service: `eq.${service}`,
+        status: 'eq.active',
+      }
+    );
 
     if (checkError) {
       return res.status(400).json({
@@ -105,7 +107,7 @@ export async function createAppointment(req: Request, res: Response) {
       });
     }
 
-    const hasConflict = (conflictingAppointments || []).some((apt) => {
+    const hasConflict = (conflictingAppointments || []).some((apt: any) => {
       const apptStart = apt.start_time;
       const apptEnd = apt.end_time;
       return start_time < apptEnd && end_time > apptStart;
@@ -134,10 +136,7 @@ export async function createAppointment(req: Request, res: Response) {
       updated_at: new Date().toISOString(),
     };
 
-    const { data, error } = await supabase
-      .from('appointments')
-      .insert([appointmentData])
-      .select();
+    const { data, error } = await supabaseQuery('appointments', 'POST', appointmentData);
 
     if (error) {
       return res.status(400).json({
@@ -181,17 +180,15 @@ export async function cancelAppointment(req: Request, res: Response) {
       });
     }
 
-    const client = supabase.client;
-    const { data: appointments, error: findError } = await client
-      .from('appointments')
-      .select('*')
-      .eq('name', name)
-      .eq('last_name', last_name)
-      .eq('phone', phone)
-      .eq('appointment_date', appointment_date)
-      .eq('start_time', start_time)
-      .eq('end_time', end_time)
-      .eq('status', 'active');
+    const { data: appointments, error: findError } = await supabaseQuery('appointments', 'GET', undefined, {
+      name: `eq.${name}`,
+      last_name: `eq.${last_name}`,
+      phone: `eq.${phone}`,
+      appointment_date: `eq.${appointment_date}`,
+      start_time: `eq.${start_time}`,
+      end_time: `eq.${end_time}`,
+      status: 'eq.active',
+    });
 
     if (findError) {
       return res.status(400).json({
@@ -209,13 +206,12 @@ export async function cancelAppointment(req: Request, res: Response) {
 
     const appointmentToCancel = appointments[0];
 
-    const { error: updateError } = await client
-      .from('appointments')
-      .update({
-        status: 'cancelled',
-        updated_at: new Date().toISOString(),
-      })
-      .eq('id', appointmentToCancel.id);
+    const { error: updateError } = await supabaseQuery('appointments', 'PATCH', {
+      status: 'cancelled',
+      updated_at: new Date().toISOString(),
+    }, {
+      id: `eq.${appointmentToCancel.id}`,
+    });
 
     if (updateError) {
       return res.status(400).json({
