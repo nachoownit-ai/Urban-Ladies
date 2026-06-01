@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generar PDF - Urban Ladies N8N Integration</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 500px;
+        }
+        h1 {
+            color: #ff1493;
+            margin-bottom: 20px;
+        }
+        p {
+            color: #666;
+            margin: 15px 0;
+            line-height: 1.6;
+        }
+        button {
+            background: #ff1493;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 20px 10px;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #ff69b4;
+        }
+        button:active {
+            transform: scale(0.98);
+        }
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            display: block;
+        }
+        .loading {
+            background: #fff3cd;
+            color: #856404;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📄 Generar PDF</h1>
+        <h2>Urban Ladies PRO - N8N Integration Guide</h2>
+
+        <p>Haz clic en el botón para descargar la guía como PDF</p>
+
+        <button onclick="generatePDF()">
+            ⬇️ Descargar PDF
+        </button>
+
+        <button onclick="openHTML()">
+            🌐 Ver en HTML
+        </button>
+
+        <div id="status" class="status"></div>
+    </div>
+
+    <script>
+        async function generatePDF() {
+            const statusDiv = document.getElementById('status');
+            statusDiv.className = 'status loading';
+            statusDiv.textContent = '⏳ Generando PDF... por favor espera';
+
+            try {
+                // Cargar el HTML
+                const response = await fetch('N8N_INTEGRATION_GUIDE.html');
+                const htmlContent = await response.text();
+
+                // Crear un elemento temporal
+                const element = document.createElement('div');
+                element.innerHTML = htmlContent;
+
+                // Configurar html2pdf
+                const options = {
+                    margin: 10,
+                    filename: 'N8N_INTEGRATION_GUIDE.pdf',
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2 },
+                    jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' }
+                };
+
+                // Generar PDF
+                await html2pdf().set(options).from(element).save();
+
+                statusDiv.className = 'status success';
+                statusDiv.innerHTML = '✅ PDF descargado correctamente!<br>Revisa tu carpeta de descargas';
+            } catch (error) {
+                statusDiv.className = 'status';
+                statusDiv.style.background = '#f8d7da';
+                statusDiv.style.color = '#721c24';
+                statusDiv.textContent = '❌ Error: ' + error.message;
+            }
+        }
+
+        function openHTML() {
+            window.open('N8N_INTEGRATION_GUIDE.html', '_blank');
+        }
+    </script>
+</body>
+</html>

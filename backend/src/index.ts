@@ -5,6 +5,8 @@ import { env } from './config/env.js';
 import { initializeDatabase } from './db.js';
 import { authRouter } from './routes/auth.js';
 import { dashboardRouter } from './routes/dashboard.js';
+import appointmentRoutes from './routes/appointments.js';
+import appointmentsN8nRoutes from './routes/appointmentsN8n.js';
 import { errorHandler } from './middleware/auth.js';
 
 const app = express();
@@ -17,6 +19,8 @@ app.use(express.json());
 // Routes
 app.use('/api/auth', authRouter);
 app.use('/api/dashboard', dashboardRouter);
+app.use('/api/appointments', appointmentRoutes);
+app.use('/api/n8n', appointmentsN8nRoutes);
 
 // Health check
 app.get('/health', (req, res) => {

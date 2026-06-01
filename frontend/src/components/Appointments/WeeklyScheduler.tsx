@@ -1,13 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { appointmentsAPI } from '../../api/client.js';
 
 interface Appointment {
   id: string;
-  clientName: string;
-  startTime: string;
-  endTime: string;
-  employee: string;
-  date: string;
+  client_name: string;
+  start_time: string;
+  end_time: string;
+  employee_name: string;
+  appointment_date: string;
   status: 'reserved' | 'completed' | 'cancelled';
 }
 
@@ -19,34 +20,41 @@ const HOURS = Array.from({ length: 12 }, (_, i) => {
 
 export function WeeklyScheduler() {
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
-  const [appointments, setAppointments] = useState<Appointment[]>([
-    {
-      id: '1',
-      clientName: 'Isabel Michoa',
-      startTime: '09:00',
-      endTime: '09:45',
-      employee: 'Rubi',
-      date: new Date().toISOString().split('T')[0],
-      status: 'reserved',
-    },
-    {
-      id: '2',
-      clientName: 'Pepa Mesa',
-      startTime: '10:00',
-      endTime: '10:45',
-      employee: 'Rubi',
-      date: new Date().toISOString().split('T')[0],
-      status: 'reserved',
-    },
-  ]);
+  const [appointments, setAppointments] = useState<Appointment[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [showNewForm, setShowNewForm] = useState(false);
   const [formData, setFormData] = useState({
-    clientName: '',
-    date: new Date().toISOString().split('T')[0],
-    startTime: '09:00',
-    endTime: '09:45',
-    employee: 'Rubi',
+    client_name: '',
+    appointment_date: new Date().toISOString().split('T')[0],
+    start_time: '09:00',
+    end_time: '09:45',
+    employee_name: 'Rubi',
   });
+
+  // Cargar citas al montar y cuando cambie la fecha
+  useEffect(() => {
+    loadAppointments();
+  }, [currentDate]);
+
+  const loadAppointments = async () => {
+    try {
+      setIsLoading(true);
+      setError(null);
+      const startDate = new Date(currentDate);
+      startDate.setDate(startDate.getDate() - startDate.getDay() + 1);
+      const endDate = new Date(startDate);
+      endDate.setDate(endDate.getDate() + 6);
+
+      const data = await appointmentsAPI.getAll();
+      setAppointments(data || []);
+    } catch (err: any) {
+      console.error('Error loading appointments:', err);
+      setError('Error al cargar las citas');
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const getWeekDates = () => {
     const start = new Date(currentDate);
@@ -63,41 +71,62 @@ export function WeeklyScheduler() {
   const getAppointmentForSlot = (date: Date, hour: string) => {
     const dateStr = date.toISOString().split('T')[0];
     return appointments.find(
-      (apt) => apt.date === dateStr && apt.startTime === hour && apt.status !== 'cancelled'
+      (apt) =>
+        apt.appointment_date === dateStr &&
+        apt.start_time === hour &&
+        apt.status !== 'cancelled'
     );
   };
 
-  const handleAddAppointment = (e: React.FormEvent) => {
+  const handleAddAppointment = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.clientName.trim()) return;
+    if (!formData.client_name.trim()) {
+      setError('El nombre del cliente es requerido');
+      return;
+    }
 
-    const newAppointment: Appointment = {
-      id: Date.now().toString(),
-      clientName: formData.clientName,
-      startTime: formData.startTime,
-      endTime: formData.endTime,
-      employee: formData.employee,
-      date: formData.date,
-      status: 'reserved',
-    };
+    try {
+      setIsLoading(true);
+      setError(null);
+      await appointmentsAPI.create({
+        client_name: formData.client_name,
+        employee_name: formData.employee_name,
+        appointment_date: formData.appointment_date,
+        start_time: formData.start_time,
+        end_time: formData.end_time,
+      });
 
-    setAppointments([...appointments, newAppointment]);
-    setFormData({
-      clientName: '',
-      date: new Date().toISOString().split('T')[0],
-      startTime: '09:00',
-      endTime: '09:45',
-      employee: 'Rubi',
-    });
-    setShowNewForm(false);
+      // Recargar citas
+      await loadAppointments();
+
+      setFormData({
+        client_name: '',
+        appointment_date: new Date().toISOString().split('T')[0],
+        start_time: '09:00',
+        end_time: '09:45',
+        employee_name: 'Rubi',
+      });
+      setShowNewForm(false);
+    } catch (err: any) {
+      console.error('Error creating appointment:', err);
+      setError('Error al crear la cita: ' + (err.response?.data?.error || err.message));
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const handleCancelAppointment = (id: string) => {
-    setAppointments(
-      appointments.map((apt) =>
-        apt.id === id ? { ...apt, status: 'cancelled' } : apt
-      )
-    );
+  const handleCancelAppointment = async (id: string) => {
+    try {
+      setIsLoading(true);
+      setError(null);
+      await appointmentsAPI.update(id, { status: 'cancelled' });
+      await loadAppointments();
+    } catch (err: any) {
+      console.error('Error cancelling appointment:', err);
+      setError('Error al cancelar la cita');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -166,15 +195,16 @@ export function WeeklyScheduler() {
                     >
                       {appointment ? (
                         <div className="bg-blue-100 border-2 border-blue-300 rounded p-2 cursor-pointer hover:shadow-md transition-shadow group relative">
-                          <div className="font-semibold text-blue-900 text-sm">{appointment.clientName}</div>
+                          <div className="font-semibold text-blue-900 text-sm">{appointment.client_name}</div>
                           <div className="text-xs text-blue-700">
-                            {appointment.startTime}-{appointment.endTime}
+                            {appointment.start_time}-{appointment.end_time}
                           </div>
-                          <div className="text-xs text-blue-600">{appointment.employee}</div>
+                          <div className="text-xs text-blue-600">{appointment.employee_name}</div>
                           <button
                             onClick={() => handleCancelAppointment(appointment.id)}
                             className="absolute top-1 right-1 bg-red-500 text-white p-1 rounded opacity-0 group-hover:opacity-100 transition-opacity"
                             title="Cancelar cita"
+                            disabled={isLoading}
                           >
                             <X size={14} />
                           </button>
@@ -182,7 +212,7 @@ export function WeeklyScheduler() {
                       ) : (
                         <div
                           onClick={() => {
-                            setFormData({ ...formData, date: dateStr, startTime: hour });
+                            setFormData({ ...formData, appointment_date: dateStr, start_time: hour });
                             setShowNewForm(true);
                           }}
                           className="bg-green-50 border-2 border-green-200 rounded p-3 text-center text-green-700 text-xs font-medium cursor-pointer hover:bg-green-100 transition-colors"
@@ -225,6 +255,11 @@ export function WeeklyScheduler() {
               </button>
             </div>
 
+            {error && (
+              <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
+                {error}
+              </div>
+            )}
             <form onSubmit={handleAddAppointment} className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -232,11 +267,12 @@ export function WeeklyScheduler() {
                 </label>
                 <input
                   type="text"
-                  value={formData.clientName}
-                  onChange={(e) => setFormData({ ...formData, clientName: e.target.value })}
+                  value={formData.client_name}
+                  onChange={(e) => setFormData({ ...formData, client_name: e.target.value })}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600"
                   placeholder="Ej: María García"
                   required
+                  disabled={isLoading}
                 />
               </div>
 
@@ -246,9 +282,10 @@ export function WeeklyScheduler() {
                 </label>
                 <input
                   type="date"
-                  value={formData.date}
-                  onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                  value={formData.appointment_date}
+                  onChange={(e) => setFormData({ ...formData, appointment_date: e.target.value })}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600"
+                  disabled={isLoading}
                 />
               </div>
 
@@ -259,9 +296,10 @@ export function WeeklyScheduler() {
                   </label>
                   <input
                     type="time"
-                    value={formData.startTime}
-                    onChange={(e) => setFormData({ ...formData, startTime: e.target.value })}
+                    value={formData.start_time}
+                    onChange={(e) => setFormData({ ...formData, start_time: e.target.value })}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600"
+                    disabled={isLoading}
                   />
                 </div>
                 <div>
@@ -270,9 +308,10 @@ export function WeeklyScheduler() {
                   </label>
                   <input
                     type="time"
-                    value={formData.endTime}
-                    onChange={(e) => setFormData({ ...formData, endTime: e.target.value })}
+                    value={formData.end_time}
+                    onChange={(e) => setFormData({ ...formData, end_time: e.target.value })}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600"
+                    disabled={isLoading}
                   />
                 </div>
               </div>
@@ -282,9 +321,10 @@ export function WeeklyScheduler() {
                   Empleada
                 </label>
                 <select
-                  value={formData.employee}
-                  onChange={(e) => setFormData({ ...formData, employee: e.target.value })}
+                  value={formData.employee_name}
+                  onChange={(e) => setFormData({ ...formData, employee_name: e.target.value })}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600"
+                  disabled={isLoading}
                 >
                   <option>Rubi</option>
                   <option>Laura</option>
@@ -297,15 +337,17 @@ export function WeeklyScheduler() {
                 <button
                   type="button"
                   onClick={() => setShowNewForm(false)}
-                  className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium"
+                  className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium disabled:opacity-50"
+                  disabled={isLoading}
                 >
                   Cancelar
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors font-medium"
+                  className="flex-1 px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors font-medium disabled:opacity-50"
+                  disabled={isLoading}
                 >
-                  Crear Cita
+                  {isLoading ? 'Guardando...' : 'Crear Cita'}
                 </button>
               </div>
             </form>

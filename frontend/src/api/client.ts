@@ -61,3 +61,45 @@ export const dashboardAPI = {
     return response.data.data;
   },
 };
+
+export const appointmentsAPI = {
+  create: async (appointment: any) => {
+    const response = await apiClient.post('/appointments', appointment);
+    return response.data.data;
+  },
+  getAll: async (filters?: any) => {
+    const response = await apiClient.get('/appointments', { params: filters });
+    return response.data.data || [];
+  },
+  getById: async (id: string) => {
+    const response = await apiClient.get(`/appointments/${id}`);
+    return response.data.data;
+  },
+  update: async (id: string, data: any) => {
+    const response = await apiClient.put(`/appointments/${id}`, data);
+    return response.data.data;
+  },
+  delete: async (id: string) => {
+    const response = await apiClient.delete(`/appointments/${id}`);
+    return response.data;
+  },
+  getAvailableSlots: async (date: string, employee?: string, duration?: number) => {
+    const params: any = { date };
+    if (employee) params.employee_name = employee;
+    if (duration) params.duration = duration;
+    const response = await apiClient.get('/appointments/available-slots', { params });
+    return response.data.data || [];
+  },
+  markConfirmationCallMade: async (id: string) => {
+    const response = await apiClient.post(`/appointments/${id}/confirm-call`);
+    return response.data.data;
+  },
+  markReminderSent: async (id: string) => {
+    const response = await apiClient.post(`/appointments/${id}/send-reminder`);
+    return response.data.data;
+  },
+  recordReminderAttempt: async (id: string) => {
+    const response = await apiClient.post(`/appointments/${id}/reminder-attempt`);
+    return response.data.data;
+  },
+};

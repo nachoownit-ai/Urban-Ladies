@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urban Ladies PRO - Guía de Integración N8N</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: white;
+            padding: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #ff1493;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            border-bottom: 3px solid #ff1493;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: #ff1493;
+            font-size: 1.8em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-left: 10px;
+            border-left: 5px solid #ff1493;
+        }
+
+        h3 {
+            color: #444;
+            font-size: 1.3em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .header-info {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            font-size: 0.95em;
+        }
+
+        .url-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            word-break: break-all;
+        }
+
+        .code-block {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.95em;
+        }
+
+        table th {
+            background: #ff1493;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+
+        table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+        }
+
+        table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .success {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .error {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+
+        .checklist li {
+            padding: 8px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .checklist li:before {
+            content: "☐";
+            position: absolute;
+            left: 0;
+            font-size: 1.2em;
+        }
+
+        .step {
+            background: #f0f0f0;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+            border-left: 4px solid #007bff;
+        }
+
+        .step-title {
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        ul, ol {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        .emoji {
+            font-size: 1.2em;
+            margin-right: 5px;
+        }
+
+        .page-break {
+            page-break-after: always;
+            margin-top: 40px;
+        }
+
+        @media print {
+            body {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1><span class="emoji">📱</span>Urban Ladies PRO - Guía de Integración N8N</h1>
+
+    <div class="header-info">
+        <strong>Versión</strong>: 1.0<br>
+        <strong>Fecha</strong>: 2026-06-01<br>
+        <strong>Estado</strong>: ✅ Backend Desplegado en Railway
+    </div>
+
+    <h2><span class="emoji">🔗</span>URLs y Acceso</h2>
+
+    <h3>Frontend (App para Usuarios)</h3>
+    <div class="url-box">
+        https://urban-ladies-crm.netlify.app/
+    </div>
+    <ul>
+        <li>Aplicación web para gestionar citas</li>
+        <li>React 18 + Tailwind CSS</li>
+        <li>Datos sincronizados con Supabase en tiempo real</li>
+    </ul>
+
+    <h3>Backend API (Para N8N)</h3>
+    <div class="url-box">
+        https://urban-ladies-production.up.railway.app
+    </div>
+    <ul>
+        <li>Express.js + TypeScript</li>
+        <li>API REST para N8N</li>
+        <li>Conectado a Supabase PostgreSQL</li>
+    </ul>
+
+    <h3>Base de Datos</h3>
+    <div class="url-box">
+        Supabase PostgreSQL<br>
+        https://gmanikbgtvoghtzxxioq.supabase.co
+    </div>
+    <ul>
+        <li>Almacenamiento persistente de citas</li>
+        <li>Acceso controlado mediante API</li>
+        <li>Tabla: <code>appointments</code></li>
+    </ul>
+
+    <div class="page-break"></div>
+
+    <h2><span class="emoji">🛠️</span>Tools N8N - 3 Endpoints</h2>
+
+    <h3>TOOL 1: Verificar Disponibilidad</h3>
+    <p><strong>Tipo</strong>: GET</p>
+    <div class="url-box">
+        https://urban-ladies-production.up.railway.app/api/n8n/check-availability
+    </div>
+
+    <h4>Parámetros</h4>
+    <table>
+        <tr>
+            <th>Parámetro</th>
+            <th>Tipo</th>
+            <th>Requerido</th>
+            <th>Descripción</th>
+        </tr>
+        <tr>
+            <td>service</td>
+            <td>string</td>
+            <td>✅</td>
+            <td>Nombre del servicio (Corte, Tinte, etc)</td>
+        </tr>
+        <tr>
+            <td>date</td>
+            <td>string</td>
+            <td>✅</td>
+            <td>Fecha formato YYYY-MM-DD</td>
+        </tr>
+        <tr>
+            <td>start_time</td>
+            <td>string</td>
+            <td>✅</td>
+            <td>Hora inicio HH:mm</td>
+        </tr>
+        <tr>
+            <td>end_time</td>
+            <td>string</td>
+            <td>✅</td>
+            <td>Hora final HH:mm</td>
+        </tr>
+        <tr>
+            <td>professional</td>
+            <td>string</td>
+            <td>❌</td>
+            <td>Nombre de profesional (opcional)</td>
+        </tr>
+    </table>
+
+    <h4>Ejemplo Query</h4>
+    <div class="code-block">?service=Corte&date=2026-06-05&start_time=10:00&end_time=10:45&professional=Rubi</div>
+
+    <h4>Response OK</h4>
+    <div class="success">
+        <div class="code-block">{
+  "success": true,
+  "available": true,
+  "message": "Disponible: Corte el 2026-06-05 de 10:00 a 10:45",
+  "data": {
+    "available": true,
+    "conflicts": 0
+  }
+}</div>
+    </div>
+
+    <h3>TOOL 2: Crear Cita</h3>
+    <p><strong>Tipo</strong>: POST</p>
+    <div class="url-box">
+        https://urban-ladies-production.up.railway.app/api/n8n/create-appointment
+    </div>
+
+    <h4>Body JSON</h4>
+    <div class="code-block">{
+  "name": "Isabel",
+  "last_name": "Michoa",
+  "phone": "+34612345678",
+  "service": "Corte de Cabello",
+  "appointment_date": "2026-06-05",
+  "start_time": "10:00",
+  "end_time": "10:45",
+  "professional": "Rubi",
+  "notes": "Cliente nueva"
+}</div>
+
+    <h4>Response OK (201)</h4>
+    <div class="success">
+        <div class="code-block">{
+  "success": true,
+  "message": "Reserva creada exitosamente para Isabel Michoa",
+  "data": {
+    "appointment_id": "550e8400-e29b-41d4-a716-446655440000",
+    "client_name": "Isabel Michoa",
+    "service": "Corte de Cabello",
+    "date": "2026-06-05",
+    "time": "10:00-10:45"
+  }
+}</div>
+    </div>
+
+    <h3>TOOL 3: Cancelar Cita</h3>
+    <p><strong>Tipo</strong>: POST</p>
+    <div class="url-box">
+        https://urban-ladies-production.up.railway.app/api/n8n/cancel-appointment
+    </div>
+
+    <h4>Body JSON</h4>
+    <div class="code-block">{
+  "name": "Isabel",
+  "last_name": "Michoa",
+  "phone": "+34612345678",
+  "appointment_date": "2026-06-05",
+  "start_time": "10:00",
+  "end_time": "10:45"
+}</div>
+
+    <h4>Response OK</h4>
+    <div class="success">
+        <div class="code-block">{
+  "success": true,
+  "message": "Reserva cancelada para Isabel Michoa",
+  "data": {
+    "status": "cancelled"
+  }
+}</div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h2><span class="emoji">🚀</span>Cómo Crear Tools en N8N</h2>
+
+    <div class="step">
+        <div class="step-title">Paso 1: Tool - Check Availability</div>
+        <ol>
+            <li>Haz clic en <strong>"+" en tu workflow</strong></li>
+            <li>Busca <strong>"HTTP Request"</strong></li>
+            <li>Configura:
+                <div class="code-block">Name: Check Availability
+Method: GET
+URL: https://urban-ladies-production.up.railway.app/api/n8n/check-availability
+Query Parameters:
+  service = {{ $node.VariableInput.json.service }}
+  date = {{ $node.VariableInput.json.date }}
+  start_time = {{ $node.VariableInput.json.start_time }}
+  end_time = {{ $node.VariableInput.json.end_time }}
+  professional = {{ $node.VariableInput.json.professional }}</div>
+            </li>
+        </ol>
+    </div>
+
+    <div class="step">
+        <div class="step-title">Paso 2: Tool - Create Appointment</div>
+        <ol>
+            <li>Agrega otro <strong>"HTTP Request"</strong></li>
+            <li>Configura:
+                <div class="code-block">Name: Create Appointment
+Method: POST
+URL: https://urban-ladies-production.up.railway.app/api/n8n/create-appointment
+Headers:
+  Content-Type = application/json
+Body:
+{
+  "name": "{{ $node.VariableInput.json.name }}",
+  "last_name": "{{ $node.VariableInput.json.last_name }}",
+  "phone": "{{ $node.VariableInput.json.phone }}",
+  "service": "{{ $node.VariableInput.json.service }}",
+  "appointment_date": "{{ $node.VariableInput.json.appointment_date }}",
+  "start_time": "{{ $node.VariableInput.json.start_time }}",
+  "end_time": "{{ $node.VariableInput.json.end_time }}"
+}</div>
+            </li>
+        </ol>
+    </div>
+
+    <div class="step">
+        <div class="step-title">Paso 3: Tool - Cancel Appointment</div>
+        <ol>
+            <li>Agrega otro <strong>"HTTP Request"</strong></li>
+            <li>Configura:
+                <div class="code-block">Name: Cancel Appointment
+Method: POST
+URL: https://urban-ladies-production.up.railway.app/api/n8n/cancel-appointment
+Headers:
+  Content-Type = application/json
+Body:
+{
+  "name": "{{ $node.VariableInput.json.name }}",
+  "last_name": "{{ $node.VariableInput.json.last_name }}",
+  "phone": "{{ $node.VariableInput.json.phone }}",
+  "appointment_date": "{{ $node.VariableInput.json.appointment_date }}",
+  "start_time": "{{ $node.VariableInput.json.start_time }}",
+  "end_time": "{{ $node.VariableInput.json.end_time }}"
+}</div>
+            </li>
+        </ol>
+    </div>
+
+    <h2><span class="emoji">✅</span>Checklist</h2>
+    <ul class="checklist">
+        <li>Creé HTTP Node para Check Availability</li>
+        <li>Creé HTTP Node para Create Appointment</li>
+        <li>Creé HTTP Node para Cancel Appointment</li>
+        <li>Probé endpoints con Postman/curl</li>
+        <li>Configuré variables N8N</li>
+        <li>Integré con API de llamadas</li>
+        <li>Probé E2E completo</li>
+    </ul>
+
+    <h2><span class="emoji">🐛</span>Troubleshooting</h2>
+
+    <h3>CORS Error</h3>
+    <div class="error">Backend está configurado para urban-ladies-crm.netlify.app y N8N</div>
+
+    <h3>Required fields missing</h3>
+    <div class="error">Verifica: name, last_name, phone, appointment_date, start_time, end_time</div>
+
+    <h3>Appointment not found</h3>
+    <div class="error">Datos deben coincidir exactamente (nombre, apellido, teléfono, fecha, hora)</div>
+
+    <h3>Time conflict</h3>
+    <div class="error">Otro cliente ya tiene cita en ese horario. Proponer otro horario.</div>
+
+    <hr style="margin-top: 50px; border: none; border-top: 2px solid #ff1493;">
+    <p style="margin-top: 20px; color: #666; font-size: 0.9em;">
+        <strong>Versión</strong>: 1.0 | <strong>Fecha</strong>: 2026-06-01 | <strong>Estado</strong>: ✅ Listo para Producción
+    </p>
+</body>
+</html>
