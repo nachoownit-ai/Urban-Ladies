@@ -17,14 +17,9 @@ function initializeSupabase() {
         process.env.SUPABASE_URL!,
         process.env.SUPABASE_SERVICE_KEY!,
         {
-          realtime: {
-            params: {
-              eventsPerSecond: 10,
-            },
-          },
-          global: {
-            // @ts-ignore - ws is for Node.js environment
-            fetch: undefined,
+          realtime: false,
+          auth: {
+            persistSession: false,
           },
         }
       );

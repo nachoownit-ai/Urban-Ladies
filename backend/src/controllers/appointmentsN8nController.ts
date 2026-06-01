@@ -14,7 +14,12 @@ function getSupabaseClient() {
       throw new Error('Missing Supabase credentials in environment variables');
     }
 
-    supabaseClient = createClient(supabaseUrl, supabaseServiceKey);
+    supabaseClient = createClient(supabaseUrl, supabaseServiceKey, {
+      realtime: false,
+      auth: {
+        persistSession: false,
+      },
+    });
   }
   return supabaseClient;
 }
