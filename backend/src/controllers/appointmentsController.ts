@@ -124,9 +124,16 @@ export async function getAppointments(req: Request, res: Response) {
       });
     }
 
+    const mapped = (data || []).map((apt: any) => ({
+      ...apt,
+      client_name: `${apt.name} ${apt.last_name}`.trim(),
+      employee_name: apt.professional,
+      status: apt.status || 'reserved'
+    }));
+
     res.json({
       success: true,
-      data: data || [],
+      data: mapped,
     });
   } catch (error) {
     console.error('Get appointments error:', error);
