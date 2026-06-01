@@ -13,8 +13,7 @@ export async function checkAvailability(req: Request, res: Response) {
       });
     }
 
-    const client = supabase.client;
-    const { data: appointments, error } = await client
+    const { data: appointments, error } = await supabase
       .from('appointments')
       .select('*')
       .eq('appointment_date', date as string)
@@ -92,7 +91,7 @@ export async function createAppointment(req: Request, res: Response) {
     }
 
     const client = supabase.client;
-    const { data: conflictingAppointments, error: checkError } = await client
+    const { data: conflictingAppointments, error: checkError } = await supabase
       .from('appointments')
       .select('*')
       .eq('appointment_date', appointment_date)
@@ -135,7 +134,7 @@ export async function createAppointment(req: Request, res: Response) {
       updated_at: new Date().toISOString(),
     };
 
-    const { data, error } = await client
+    const { data, error } = await supabase
       .from('appointments')
       .insert([appointmentData])
       .select();
