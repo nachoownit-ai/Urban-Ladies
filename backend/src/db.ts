@@ -1,38 +1,28 @@
+import ws from 'ws';
 import { createClient } from '@supabase/supabase-js';
 import sqlite3 from 'sqlite3';
 import path from 'path';
-import ws from 'ws';
 
 // Detectar si usamos Supabase o SQLite local
 const useSupabase = !!process.env.SUPABASE_URL && !!process.env.SUPABASE_SERVICE_KEY;
 
-let supabaseClient: any = null;
 let sqliteDb: sqlite3.Database | null = null;
 
-// Lazy initialization - don't connect at startup
-function initializeSupabase() {
-  if (!supabaseClient && useSupabase) {
-    try {
-      supabaseClient = createClient(
-        process.env.SUPABASE_URL!,
-        process.env.SUPABASE_SERVICE_KEY!,
-        {
-          realtime: {
-            transport: ws,
-          },
-          auth: {
-            persistSession: false,
-          },
-        }
-      );
-      console.log('✓ Connected to Supabase PostgreSQL');
-    } catch (error) {
-      console.error('Error connecting to Supabase:', error);
-      throw error;
-    }
-  }
-  return supabaseClient;
-}
+// Crear cliente Supabase con soporte WebSocket para Node.js 20
+export const supabase = useSupabase
+  ? createClient(
+      process.env.SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_KEY!,
+      {
+        realtime: {
+          transport: ws,
+        },
+        auth: {
+          persistSession: false,
+        },
+      }
+    )
+  : null;
 
 function initializeSQLite() {
   if (!sqliteDb && !useSupabase) {
@@ -55,7 +45,7 @@ function initializeSQLite() {
 
 export function getDb() {
   if (useSupabase) {
-    return initializeSupabase();
+    return supabase;
   } else {
     return initializeSQLite();
   }
@@ -65,18 +55,8 @@ export const db = null; // Deprecated: use getDb() instead
 
 export function initializeDatabase() {
   if (useSupabase) {
-    // Supabase tables are managed in the SQL migrations
-    // Just verify connection with lazy initialization
-    try {
-      const client = initializeSupabase();
-      return client.auth.getSession().then(() => {
-        console.log('✓ Database initialized successfully (Supabase)');
-        return Promise.resolve();
-      });
-    } catch (error) {
-      console.log('⚠ Supabase not fully initialized yet (will initialize on first request)');
-      return Promise.resolve();
-    }
+    console.log('✓ Supabase client initialized (will connect on first request)');
+    return Promise.resolve();
   } else {
     // SQLite initialization
     return new Promise<void>((resolve, reject) => {

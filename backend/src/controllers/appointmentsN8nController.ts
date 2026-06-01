@@ -1,31 +1,6 @@
 import { Request, Response } from 'express';
-import { createClient } from '@supabase/supabase-js';
 import { v4 as uuidv4 } from 'uuid';
-import ws from 'ws';
-
-// Initialize Supabase client lazily (only when needed)
-let supabaseClient: any = null;
-
-function getSupabaseClient() {
-  if (!supabaseClient) {
-    const supabaseUrl = process.env.SUPABASE_URL;
-    const supabaseServiceKey = process.env.SUPABASE_SERVICE_KEY;
-
-    if (!supabaseUrl || !supabaseServiceKey) {
-      throw new Error('Missing Supabase credentials in environment variables');
-    }
-
-    supabaseClient = createClient(supabaseUrl, supabaseServiceKey, {
-      realtime: {
-        transport: ws,
-      },
-      auth: {
-        persistSession: false,
-      },
-    });
-  }
-  return supabaseClient;
-}
+import { supabase } from '../db.js';
 
 /**
  * Check availability for a given date, time, service, and optional professional
@@ -44,7 +19,7 @@ export async function checkAvailability(req: Request, res: Response) {
     }
 
     // Query appointments table for conflicts
-    const { data: appointments, error } = await getSupabaseClient()
+    const { data: appointments, error } = await supabase
       .from('appointments')
       .select('*')
       .eq('appointment_date', date as string)
@@ -132,7 +107,7 @@ export async function createAppointment(req: Request, res: Response) {
     }
 
     // Check availability before creating
-    const { data: conflictingAppointments, error: checkError } = await getSupabaseClient()
+    const { data: conflictingAppointments, error: checkError } = await supabase
       .from('appointments')
       .select('*')
       .eq('appointment_date', appointment_date)
@@ -177,7 +152,7 @@ export async function createAppointment(req: Request, res: Response) {
       updated_at: new Date().toISOString(),
     };
 
-    const { data, error } = await getSupabaseClient()
+    const { data, error } = await supabase
       .from('appointments')
       .insert([appointmentData])
       .select();
@@ -231,7 +206,7 @@ export async function cancelAppointment(req: Request, res: Response) {
     }
 
     // Find the appointment to cancel
-    const { data: appointments, error: findError } = await getSupabaseClient()
+    const { data: appointments, error: findError } = await supabase
       .from('appointments')
       .select('*')
       .eq('name', name)
@@ -259,7 +234,7 @@ export async function cancelAppointment(req: Request, res: Response) {
     const appointmentToCancel = appointments[0];
 
     // Cancel the appointment (set status to cancelled)
-    const { error: updateError } = await getSupabaseClient()
+    const { error: updateError } = await supabase
       .from('appointments')
       .update({
         status: 'cancelled',
